@@ -50,3 +50,5 @@ parent(zhdana,zlatomir).
 
 man():-man(M),write(M),nl,fail.
 woman():-woman(W),write(W),nl,fail.
+
+children(P):-parent(P,C),write(C),nl,fail.
