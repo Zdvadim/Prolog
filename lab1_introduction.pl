@@ -61,3 +61,6 @@ dauther(P):-dauther(D,P),write(D),nl,fail.
 
 brother(B,C):-mother(M,B),mother(M,C),man(B),B\=C.
 brother(C):-brother(B,C),write(B),nl,fail.
+
+husband(H,W):-parent(H,C),mother(W,C),man(H).
+husband(W):-husband(H,W),write(H).
