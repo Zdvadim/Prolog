@@ -55,3 +55,6 @@ children(P):-parent(P,C),write(C),nl,fail.
 
 mother(M,C):-parent(M,C),woman(M).
 mother(C):-mother(M,C),write(M).
+
+dauther(D,P):-parent(P,D),woman(D).
+dauther(P):-dauther(D,P),write(D),nl,fail.
