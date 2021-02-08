@@ -58,3 +58,6 @@ mother(C):-mother(M,C),write(M).
 
 dauther(D,P):-parent(P,D),woman(D).
 dauther(P):-dauther(D,P),write(D),nl,fail.
+
+brother(B,C):-mother(M,B),mother(M,C),man(B),B\=C.
+brother(C):-brother(B,C),write(B),nl,fail.
