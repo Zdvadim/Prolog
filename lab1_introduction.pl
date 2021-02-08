@@ -64,3 +64,6 @@ brother(C):-brother(B,C),write(B),nl,fail.
 
 husband(H,W):-parent(H,C),mother(W,C),man(H).
 husband(W):-husband(H,W),write(H).
+
+b_s(C1,C2):-mother(M,C1),mother(M,C2),C1\=C2.
+b_s(C):-b_s(C,B_S),write(B_S),nl,fail.
