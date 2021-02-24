@@ -1,3 +1,6 @@
+%	Предикат вопроса q(+Question,-Answer).
+%	Question - внутренний номер вопроса, Answer запрашивается у пользователя
+
 q(1,A):-write("Question 1:"),nl,
         write("Is number greater then 20?"),nl,
         write("0. No"),nl,
@@ -148,6 +151,11 @@ q(24,A):-write("Question 5:"),nl,
         write("30."),nl,
         read(A).
 
+%	Предикат перехода next_q(+Question,+Answer,-Next_question).
+%	Паре Question - внутренний номер вопроса и
+%		 Answer - данный на него ответ
+%		 ставит в соответствие номер следующего вопроса - New_question
+		
 next_q(1,0,2).
 next_q(1,1,17).
 
@@ -183,6 +191,9 @@ next_q(19,1,21).
 
 next_q(22,0,23).
 next_q(22,1,24).
+
+%	Факты для проверки a(+Question,+Number,+Answer).
+%	Ответ Answer для числа Number на вопрос Question
 
 a(1,1,0).
 a(1,2,0).
@@ -256,7 +267,6 @@ a(4,5,1).
 a(5,1,1).
 a(5,2,2).
 a(5,3,3).
-
 
 a(6,4,4).
 a(6,5,5).
@@ -361,12 +371,22 @@ a(23,28,28).
 a(24,29,29).
 a(24,30,30).
 
+%	Изначальный набор чисел numbers(-Numbers).
+
 numbers([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]).
+
+%	Запуск Акинатора pr.
 
 pr:-numbers(Numbers),pr(1,Numbers).
 pr(Q,Numbers):-q(Q,A),check(Q,A,Numbers,[],[Checked|Others]),(is_alone([Checked|Others])->write("Your number is "),write(Checked);next_q(Q,A,New_q),pr(New_q,[Checked|Others])).
 
+%	Предикат отсеивания чисел check(+Question,+Answer,+Check_list,+Temp_list,-Checked_list).
+%	Проверяет числа из списка Check_list на соответствие ответа Answer на вопрос Question
+%	Temp_list служит буффером, где хранятся числа, прошедшие проверку. Через Checked_list возвращается список прошедших чисел
+
 check(Q,A,[],Correct,Correct):-!.
 check(Q,A,[Current|Others],Correct,Numbers):-(a(Q,Current,A)->check(Q,A,Others,[Current|Correct],Numbers);check(Q,A,Others,Correct,Numbers)).
+
+%	Предикат проверки на наличие только одного элемента в списке is_alone(+List).
 
 is_alone([_|Not_alone]):-Not_alone = [].
