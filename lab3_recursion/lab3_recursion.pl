@@ -29,8 +29,40 @@ sum_num_down(0,S,S):-!.
 sum_num_down(N,S,Sum):-N2 is N mod 10,N1 is N div 10,
 		       S1 is S+N2,sum_num_down(N1,S1,Sum).
 min_digit_up(0,9):-!.
-min_digit_up(N,MinD):-ND is N div 10,min_digit_up(ND,MinND),NM is N mod 10,(NM<MinND -> MinD is NM;MinD is MinND).
+min_digit_up(N,MinD):-ND is N div 10,min_digit_up(ND,MinND),NM is N mod 10,
+                     (NM<MinND -> MinD is NM;MinD is MinND).
 
 min_digit_down(N,MinD):-min_digit_down(N,9,MinD).
 min_digit_down(0,CurM,CurM):-!.
-min_digit_down(N,CurM,MinD):-NM is N mod 10,(NM<CurM -> NMinD is NM;NMinD is CurM),ND is N div 10,min_digit_down(ND,NMinD,MinD).
+min_digit_down(N,CurM,MinD):-NM is N mod 10,(NM<CurM -> NMinD is NM;NMinD is CurM),
+                             ND is N div 10,min_digit_down(ND,NMinD,MinD).
+
+small_digit_counter_up(0,1):-!.
+small_digit_counter_up(1,1):-!.
+small_digit_counter_up(2,1):-!.
+small_digit_counter_up(3,0):-!.
+small_digit_counter_up(4,0):-!.
+small_digit_counter_up(5,0):-!.
+small_digit_counter_up(6,0):-!.
+small_digit_counter_up(7,0):-!.
+small_digit_counter_up(8,0):-!.
+small_digit_counter_up(9,0):-!.
+small_digit_counter_up(N,Count):-ND is N div 10,small_digit_counter_up(ND,Count1),
+                                 NM is N mod 10,(NM<3 -> Count is Count1+1;Count is Count1).
+
+small_digit_counter_down(N,Count):-small_digit_counter_down(N,0,Count).
+small_digit_counter_down(0,Counter,Count):-Count is Counter+1,!.
+small_digit_counter_down(1,Counter,Count):-Count is Counter+1,!.
+small_digit_counter_down(2,Counter,Count):-Count is Counter+1,!.
+small_digit_counter_down(3,Counter,Counter):-!.
+small_digit_counter_down(4,Counter,Counter):-!.
+small_digit_counter_down(5,Counter,Counter):-!.
+small_digit_counter_down(6,Counter,Counter):-!.
+small_digit_counter_down(7,Counter,Counter):-!.
+small_digit_counter_down(8,Counter,Counter):-!.
+small_digit_counter_down(9,Counter,Counter):-!.
+small_digit_counter_down(N,Counter,Count):-ND is N div 10,NM is N mod 10,
+                                           (NM<3 -> Counter1 is Counter+1;Counter1 is Counter),
+                                           small_digit_counter_down(ND,Counter1,Count).
+
+
