@@ -28,3 +28,9 @@ sum_num_down(N,S):-sum_num_down(N,0,S).
 sum_num_down(0,S,S):-!.
 sum_num_down(N,S,Sum):-N2 is N mod 10,N1 is N div 10,
 		       S1 is S+N2,sum_num_down(N1,S1,Sum).
+min_digit_up(0,9):-!.
+min_digit_up(N,MinD):-ND is N div 10,min_digit_up(ND,MinND),NM is N mod 10,(NM<MinND -> MinD is NM;MinD is MinND).
+
+min_digit_down(N,MinD):-min_digit_down(N,9,MinD).
+min_digit_down(0,CurM,CurM):-!.
+min_digit_down(N,CurM,MinD):-NM is N mod 10,(NM<CurM -> NMinD is NM;NMinD is CurM),ND is N div 10,min_digit_down(ND,NMinD,MinD).
