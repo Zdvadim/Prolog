@@ -66,3 +66,18 @@ small_digit_counter_down(N,Counter,Count):-ND is N div 10,NM is N mod 10,
                                            small_digit_counter_down(ND,Counter1,Count).
 
 
+maxmin(X,Y,X,Y):-X>Y,!.
+maxmin(X,Y,Y,X).
+
+nod(X,X,X):-!.
+nod(X,Y,R):-maxmin(X,Y,Max,Min),NMax is Max-Min,nod(NMax,Min,R).
+
+is_simple(1):-write("(@_@)?_1"),nl,!,fail.
+is_simple(Num):-Bound is (Num div 2)+1,is_simple(2,Bound,Num).
+is_simple(Bound,Bound,_):-!.
+is_simple(Cur,Bound,N):-M is N mod Cur,M\=0,NCur is Cur+1,is_simple(NCur,Bound,N).
+
+div_counter(0,Count):-write("<(/_/)>_0_"),nl,read(NNum),div_counter(NNum,Count).
+div_counter(Num,Count):-div_counter(Num,Num,0,Count).
+div_counter(_,0,Res,Res):-!.
+div_counter(Num,Cur,Count,Res):-(0 is Num mod Cur -> NC is Count+1;NC = Count),NCur is Cur-1,div_counter(Num,NCur,NC,Res).
