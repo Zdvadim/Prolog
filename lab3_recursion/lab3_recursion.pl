@@ -91,7 +91,10 @@ chain(Num,Res):-chain(Num,0,Res).
 chain(1,Res,Res):-!.
 chain(Num,Len,Res):-(0 is Num mod 2 -> NNum is Num / 2;NNum is Num*3+1),NLen is Len+1,chain(NNum,NLen,Res).
 
-not_simple_divs(Num,Sum):-(is_simple(Num) -> Sum = 0;SSum is Num+1,not_simple_divs(Num,SSum,2,Sum)).
-not_simple_divs(Num,Sum,Num,Sum):-!.
-not_simple_divs(Num,CSum,Cur,Sum):-(0 is Num mod Cur,not(is_simple(Cur)) -> NCSum is CSum +Cur;NCSum is CSum),Next is Cur+1,not_simple_divs(Num,NCSum,Next,Sum).
+not_simple_divs_down(Num,Sum):-(is_simple(Num) -> Sum = 1;SSum is Num+1,not_simple_divs_down(Num,SSum,2,Sum)).
+not_simple_divs_down(Num,Sum,Num,Sum):-!.
+not_simple_divs_down(Num,CSum,Cur,Sum):-(0 is Num mod Cur,not(is_simple(Cur)) -> NCSum is CSum +Cur;NCSum is CSum),Next is Cur+1,not_simple_divs_down(Num,NCSum,Next,Sum).
 
+not_simple_divs_up(Num,Sum):-(is_simple(Num) -> Sum = 1;not_simple_divs_up(Num,Num,Sum)).
+not_simple_divs_up(_,1,1):-!.
+not_simple_divs_up(Num,Cur,Sum):-Next is Cur-1,not_simple_divs_up(Num,Next,NS),(0 is Num mod Cur,not(is_simple(Cur)) -> Sum is NS+Cur;Sum is NS).
