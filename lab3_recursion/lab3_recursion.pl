@@ -81,3 +81,12 @@ div_counter(0,Count):-write("<(/_/)>_0_"),nl,read(NNum),div_counter(NNum,Count).
 div_counter(Num,Count):-div_counter(Num,Num,0,Count).
 div_counter(_,0,Res,Res):-!.
 div_counter(Num,Cur,Count,Res):-(0 is Num mod Cur -> NC is Count+1;NC = Count),NCur is Cur-1,div_counter(Num,NCur,NC,Res).
+
+%Max = 837799, MaxLen = 524
+%Try memo/chain build
+pr_3_13(Max):-pr_3_13(3,1000000,1,2,Max).
+pr_3_13(Border,Border,_,IMax,IMax):-!.
+pr_3_13(Cur,Border,Max,IMax,Res):-chain(Cur,Len),(Len>Max -> NIMax is Cur,NMax is Len;NIMax is IMax,NMax is Max),Next is Cur+1,pr_3_13(Next,Border,NMax,NIMax,Res).
+chain(Num,Res):-chain(Num,0,Res).
+chain(1,Res,Res):-!.
+chain(Num,Len,Res):-(0 is Num mod 2 -> NNum is Num / 2;NNum is Num*3+1),NLen is Len+1,chain(NNum,NLen,Res).
