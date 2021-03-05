@@ -80,3 +80,11 @@ list_length([_|T],Counter,Res):-NC is Counter+1,list_length(T,NC,Res).
 
 %is_minimum(+List,+Index)
 is_minimum(List,Index):-list_el_numb(List,Elem,Index),min_list_down(List,Elem).
+
+%move_left([H|T],Res):-my_append(T,[H],Res).
+
+move_left([H|T],Res):-move_left(T,H,Res).
+move_left([],Elem,[Elem]):-!.
+move_left([H|T],Elem,[H|TR]):-move_left(T,Elem,TR).
+
+pr18_6(List,Res):-move_left(List,R1),move_left(R1,R2),move_left(R2,Res).
