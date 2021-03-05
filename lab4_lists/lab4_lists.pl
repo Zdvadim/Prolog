@@ -27,3 +27,10 @@ find_num:-read_list(List),write("Insert element"),read(Elem),(list_el_numb(List,
 find_elem:-read_list(List),write("Insert number"),read(Number),(list_el_numb(List,Elem,Number) ->
           write("Element: "),write(Elem);
           write("Number is too large_|(q)-(q)|_"),fail).
+          
+min_list_down([H|T],Min):-min_list_down(T,H,Min).
+min_list_down([],Min,Min):-!.
+min_list_down([H|T],CMin,Min):-(H<CMin -> NMin = H;NMin = CMin),min_list_down(T,NMin,Min).
+          
+min_list_up([H],H):-!.
+min_list_up([H|T],Min):-min_list_up(T,Min1),(H<Min1 -> Min = H;Min = Min1).
