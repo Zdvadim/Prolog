@@ -126,3 +126,9 @@ max_repeat_elem_h(List,Elem,Res):-max_repeat_elem_h(List,Elem,[],0,Res).
 max_repeat_elem_h([],_,Res,_,Res):-!.
 max_repeat_elem_h([Elem|T],Elem,Buffer,CIndex,Res):-Next is CIndex+1,my_append(Buffer,[CIndex],NBuffer),max_repeat_elem_h(T,Elem,NBuffer,Next,Res),!.
 max_repeat_elem_h([_|T],Elem,Buffer,CIndex,Res):-Next is CIndex+1,max_repeat_elem_h(T,Elem,Buffer,Next,Res).
+
+repeated_elems(List,Res):-repeated_elems(List,[],Res).
+repeated_elems([],Res,Res):-!.
+repeated_elems([H|T],Buffer,Res):-repeat_counter(T,H,Count),
+                                  (Count>2 -> my_append(Buffer,[H],NBuffer);NBuffer = Buffer),
+                                  delete_all(T,H,NList),repeated_elems(NList,NBuffer,Res).
