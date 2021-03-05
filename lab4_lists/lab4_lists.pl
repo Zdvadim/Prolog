@@ -116,3 +116,13 @@ less_than_avg([],_,Res,Res):-!.
 less_than_avg([H|T],Avg,Buffer,Res):-(H<Avg -> 
                                      my_append(Buffer,[H],NBuffer),less_than_avg(T,Avg,NBuffer,Res);
                                      less_than_avg(T,Avg,Buffer,Res)).
+                                     
+max_repeat_elem(List,Res):-max_repeat_elem(List,0,_,Elem),max_repeat_elem_h(List,Elem,Res).
+max_repeat_elem([],_,Res,Res):-!.
+max_repeat_elem([H|T],Max,Elem,Res):-repeat_counter(T,H,Count),delete_all(T,H,NList),
+                                 (Count > Max -> max_repeat_elem(NList,Count,H,Res);
+                                                 max_repeat_elem(NList,Max,Elem,Res)).
+max_repeat_elem_h(List,Elem,Res):-max_repeat_elem_h(List,Elem,[],0,Res).
+max_repeat_elem_h([],_,Res,_,Res):-!.
+max_repeat_elem_h([Elem|T],Elem,Buffer,CIndex,Res):-Next is CIndex+1,my_append(Buffer,[CIndex],NBuffer),max_repeat_elem_h(T,Elem,NBuffer,Next,Res),!.
+max_repeat_elem_h([_|T],Elem,Buffer,CIndex,Res):-Next is CIndex+1,max_repeat_elem_h(T,Elem,Buffer,Next,Res).
