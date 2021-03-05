@@ -34,3 +34,5 @@ min_list_down([H|T],CMin,Min):-(H<CMin -> NMin = H;NMin = CMin),min_list_down(T,
           
 min_list_up([H],H):-!.
 min_list_up([H|T],Min):-min_list_up(T,Min1),(H<Min1 -> Min = H;Min = Min1).
+
+min_elem:-read_list(List),min_list_down(List,Min),write("Minimum element: "),write(Min).
