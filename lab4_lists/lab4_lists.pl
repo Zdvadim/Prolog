@@ -109,3 +109,10 @@ local_max([H1|[H2|_]],0):-H1>H2,!.
 local_max([H1|[H2]],1):-H2>H1,!.
 local_max([H1|[H2|[H3|_]]],1):-H2>H1,H2>H3,!.
 local_max([_|T],Index):-NI is Index-1,local_max(T,NI).
+
+less_than_avg(List,Res):-sum_list_down(List,Sum),list_length(List,Len),Avg is Sum/Len,
+                         less_than_avg(List,Avg,[],Res).
+less_than_avg([],_,Res,Res):-!.
+less_than_avg([H|T],Avg,Buffer,Res):-(H<Avg -> 
+                                     my_append(Buffer,[H],NBuffer),less_than_avg(T,Avg,NBuffer,Res);
+                                     less_than_avg(T,Avg,Buffer,Res)).
