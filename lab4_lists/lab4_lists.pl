@@ -43,3 +43,8 @@ my_in_list([_|T],Elem):-my_in_list(T,Elem).
 reverse_list(List,Result):-reverse_list(List,[],Result).
 reverse_list([],Result,Result):-!.
 reverse_list([H|T],Buffer,Result):-reverse_list(T,[H|Buffer],Result).
+
+my_append([],List2,List2).
+my_append([H1|T1],List2,[H1|RT]):-my_append(T1,List2,RT).
+
+p(Sublist,List):-my_append(Prefix,_,List),my_append(_,Sublist,Prefix),!.
