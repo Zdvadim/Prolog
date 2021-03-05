@@ -48,3 +48,9 @@ my_append([],List2,List2).
 my_append([H1|T1],List2,[H1|RT]):-my_append(T1,List2,RT).
 
 p(Sublist,List):-my_append(Prefix,_,List),my_append(_,Sublist,Prefix),!.
+
+delete_elem([_|T],0,T):-!.
+delete_elem([H|T],Number,Result):-delete_elem(T,1,Number,[H],Result).
+delete_elem([_|T],Number,Number,Buffer,Result):-my_append(Buffer,T,Result),!.
+delete_elem([H|T],Counter,Number,Buffer,Result):-NCounter is Counter+1,my_append(Buffer,[H],NBuffer),
+                                                 delete_elem(T,NCounter,Number,NBuffer,Result).
