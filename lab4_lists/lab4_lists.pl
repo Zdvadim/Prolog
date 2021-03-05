@@ -66,3 +66,8 @@ is_set([H|T]):-not(my_in_list(T,H)),is_set(T).
 make_set(List,Res):-make_set(List,[],Res).
 make_set([],Res,Res):-!.
 make_set([H|T],Buffer,Res):-(not(my_in_list(Buffer,H)) -> my_append(Buffer,[H],NBuffer);NBuffer = Buffer),make_set(T,NBuffer,Res).
+
+repeat_counter(List,Elem,Res):-repeat_counter(List,Elem,0,Res).
+repeat_counter([],_,Res,Res):-!.
+repeat_counter([Elem|T],Elem,Counter,Res):-NC is Counter+1,repeat_counter(T,Elem,NC,Res),!.
+repeat_counter([_|T],Elem,Counter,Res):-repeat_counter(T,Elem,Counter,Res).
