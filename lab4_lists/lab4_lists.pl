@@ -39,3 +39,7 @@ min_elem:-read_list(List),min_list_down(List,Min),write("Minimum element: "),wri
 
 my_in_list([Elem|_],Elem):-!.
 my_in_list([_|T],Elem):-my_in_list(T,Elem).
+
+reverse_list(List,Result):-reverse_list(List,[],Result).
+reverse_list([],Result,Result):-!.
+reverse_list([H|T],Buffer,Result):-reverse_list(T,[H|Buffer],Result).
