@@ -54,3 +54,9 @@ delete_elem([H|T],Number,Result):-delete_elem(T,1,Number,[H],Result).
 delete_elem([_|T],Number,Number,Buffer,Result):-my_append(Buffer,T,Result),!.
 delete_elem([H|T],Counter,Number,Buffer,Result):-NCounter is Counter+1,my_append(Buffer,[H],NBuffer),
                                                  delete_elem(T,NCounter,Number,NBuffer,Result).
+                                                 
+delete_all(List,Elem,Res):-delete_all(List,Elem,[],Res).
+delete_all([],_,Res,Res):-!.
+delete_all([Elem|T],Elem,Buffer,Res):-delete_all(T,Elem,Buffer,Res),!.
+delete_all([H|T],Elem,Buffer,Res):-my_append(Buffer,[H],NBuffer),delete_all(T,Elem,NBuffer,Res).
+
