@@ -62,3 +62,7 @@ delete_all([H|T],Elem,Buffer,Res):-my_append(Buffer,[H],NBuffer),delete_all(T,El
 
 is_set([]):-!.
 is_set([H|T]):-not(my_in_list(T,H)),is_set(T).
+
+make_set(List,Res):-make_set(List,[],Res).
+make_set([],Res,Res):-!.
+make_set([H|T],Buffer,Res):-(not(my_in_list(Buffer,H)) -> my_append(Buffer,[H],NBuffer);NBuffer = Buffer),make_set(T,NBuffer,Res).
