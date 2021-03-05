@@ -88,3 +88,8 @@ move_left([],Elem,[Elem]):-!.
 move_left([H|T],Elem,[H|TR]):-move_left(T,Elem,TR).
 
 pr18_6(List,Res):-move_left(List,R1),move_left(R1,R2),move_left(R2,Res).
+
+min_prefix(List,Res):-min_list_down(List,Min),min_prefix(List,Min,[],Res).
+min_prefix([Min|_],Min,Res,Res):-!.
+min_prefix([H|T],Min,Buffer,Res):-my_append(Buffer,[H],NBuffer),min_prefix(T,Min,NBuffer,Res).
+
