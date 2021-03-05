@@ -105,5 +105,7 @@ fix_sequence(List,Number,Buffer,Res):-Next is Number-1,(my_in_list(List,Number) 
                                           fix_sequence(List,Next,[Number|Buffer],Res)).
 
 
-                                          
-                                          
+local_max([H1|[H2|_]],0):-H1>H2,!.
+local_max([H1|[H2]],1):-H2>H1,!.
+local_max([H1|[H2|[H3|_]]],1):-H2>H1,H2>H3,!.
+local_max([_|T],Index):-NI is Index-1,local_max(T,NI).
