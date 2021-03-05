@@ -75,3 +75,8 @@ repeat_counter([_|T],Elem,Counter,Res):-repeat_counter(T,Elem,Counter,Res).
 list_length(List,Res):-list_length(List,0,Res).
 list_length([],Res,Res):-!.
 list_length([_|T],Counter,Res):-NC is Counter+1,list_length(T,NC,Res).
+
+%#18 - 5,6,18,20,27,30,42,48,54
+
+%is_minimum(+List,+Index)
+is_minimum(List,Index):-list_el_numb(List,Elem,Index),min_list_down(List,Elem).
