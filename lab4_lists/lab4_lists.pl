@@ -20,4 +20,7 @@ list_el_numb(List,Elem,Number):-list_el_numb(List,Elem,0,Number).
 list_el_numb([El|_],El,Number,Number):-!.
 list_el_numb([_|T],El,Counter,Number):-Next is Counter+1,list_el_numb(T,El,Next,Number).
 
-%([],_,_,_):-write("There are no such element in this list_|(q)-(q)|_"),!.
+find_num:-read_list(List),read(Elem),(list_el_numb(List,Elem,Number) ->
+          write(Number);
+          write("There are no such element in this list_|(q)-(q)|_"),fail).
+          
