@@ -60,3 +60,5 @@ delete_all([],_,Res,Res):-!.
 delete_all([Elem|T],Elem,Buffer,Res):-delete_all(T,Elem,Buffer,Res),!.
 delete_all([H|T],Elem,Buffer,Res):-my_append(Buffer,[H],NBuffer),delete_all(T,Elem,NBuffer,Res).
 
+is_set([]):-!.
+is_set([H|T]):-not(my_in_list(T,H)),is_set(T).
