@@ -20,7 +20,10 @@ list_el_numb(List,Elem,Number):-list_el_numb(List,Elem,0,Number).
 list_el_numb([El|_],El,Number,Number):-!.
 list_el_numb([_|T],El,Counter,Number):-Next is Counter+1,list_el_numb(T,El,Next,Number).
 
-find_num:-read_list(List),read(Elem),(list_el_numb(List,Elem,Number) ->
-          write(Number);
+find_num:-read_list(List),write("Insert element"),read(Elem),(list_el_numb(List,Elem,Number) ->
+          write("Index: "),write(Number);
           write("There are no such element in this list_|(q)-(q)|_"),fail).
           
+find_elem:-read_list(List),write("Insert number"),read(Number),(list_el_numb(List,Elem,Number) ->
+          write("Element: "),write(Elem);
+          write("Number is too large_|(q)-(q)|_"),fail).
