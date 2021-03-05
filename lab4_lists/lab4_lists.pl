@@ -93,3 +93,17 @@ min_prefix(List,Res):-min_list_down(List,Min),min_prefix(List,Min,[],Res).
 min_prefix([Min|_],Min,Res,Res):-!.
 min_prefix([H|T],Min,Buffer,Res):-my_append(Buffer,[H],NBuffer),min_prefix(T,Min,NBuffer,Res).
 
+
+max_list_down([H|T],Max):-max_list_down(T,H,Max).
+max_list_down([],Max,Max):-!.
+max_list_down([H|T],CMax,Max):-(H>CMax -> NMax = H;NMax = CMax),max_list_down(T,NMax,Max).
+
+fix_sequence(List,Res):-max_list_down(List,Max),fix_sequence(List,Max,[],Res).
+fix_sequence(_,0,Res,Res):-!.
+fix_sequence(List,Number,Buffer,Res):-Next is Number-1,(my_in_list(List,Number) ->
+                                          fix_sequence(List,Next,Buffer,Res);
+                                          fix_sequence(List,Next,[Number|Buffer],Res)).
+
+
+                                          
+                                          
