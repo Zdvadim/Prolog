@@ -71,3 +71,7 @@ repeat_counter(List,Elem,Res):-repeat_counter(List,Elem,0,Res).
 repeat_counter([],_,Res,Res):-!.
 repeat_counter([Elem|T],Elem,Counter,Res):-NC is Counter+1,repeat_counter(T,Elem,NC,Res),!.
 repeat_counter([_|T],Elem,Counter,Res):-repeat_counter(T,Elem,Counter,Res).
+
+list_length(List,Res):-list_length(List,0,Res).
+list_length([],Res,Res):-!.
+list_length([_|T],Counter,Res):-NC is Counter+1,list_length(T,NC,Res).
