@@ -209,3 +209,34 @@ pr5:-Vessels=[_,_,_,_],
     write("Lemonade in "),write(LV),nl,
     write("Kvass in "),write(KV),nl,
     write("Water in "),write(WV),!.
+
+pr6:-People=[_,_,_,_],
+    in_list(People,[voronov,_]),
+    in_list(People,[pavlov,_]),
+    in_list(People,[levickiy,_]),
+    in_list(People,[saharov,_]),
+    in_list(People,[_,dancer]),
+    in_list(People,[_,singer]),
+    in_list(People,[_,artist]),
+    in_list(People,[_,writer]),
+    
+    not(in_list(People,[voronov,singer])),
+    not(in_list(People,[levickiy,singer])),
+    not(in_list(People,[pavlov,artist])),
+    not(in_list(People,[pavlov,writer])),
+    not(in_list(People,[saharov,writer])),
+    not(in_list(People,[voronov,writer])),
+    not(in_list(People,[levickiy,singer])),
+
+    in_list(People,[voronov,VJ]),
+    in_list(People,[pavlov,PJ]),
+    in_list(People,[levickiy,LJ]),
+    in_list(People,[saharov,SJ]),
+    write("Voronov is "),write(VJ),nl,
+    write("Pavlov is "),write(PJ),nl,
+    write("Levickiy is "),write(LJ),nl,
+    write("Saharov is "),write(SJ),!.
+
+
+
+    
