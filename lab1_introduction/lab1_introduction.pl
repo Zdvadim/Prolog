@@ -51,3 +51,6 @@ b_s(C):-b_s(C,B_S),write(B_S),nl,fail.
 
 grand_pa(G,C):-parent(P,C),parent(G,P),man(G).
 grand_pas(C):-grand_pa(G,C),write(G),nl,fail.
+
+grand_so(Gs,Gp):-grand_pa(Gp,Gs),man(Gs).
+grand_sons(Gp):-grand_so(Gs,Gp),write(Gs),nl,fail.
