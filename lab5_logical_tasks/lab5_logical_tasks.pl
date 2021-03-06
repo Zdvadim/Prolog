@@ -237,6 +237,36 @@ pr6:-People=[_,_,_,_],
     write("Levickiy is "),write(LJ),nl,
     write("Saharov is "),write(SJ),!.
 
+pr7:-Friends=[_,_,_],
+    in_list(Friends,[richard,_,_]),
+    in_list(Friends,[michael,_,_]),
+    in_list(Friends,[simon,_,_]),
+    in_list(Friends,[_,basketball,_]),
+    in_list(Friends,[_,tennis,_]),
+    in_list(Friends,[_,criket,_]),
+    in_list(Friends,[_,_,israeli]),
+    in_list(Friends,[_,_,american]),
+    in_list(Friends,[_,_,australian]),
+
+    in_list(Friends,[michael,basketball,_]),
+    not(in_list(Friends,[michael,_,american])),
+    el_no(Friends,MP,[michael,_,_]),
+    el_no(Friends,AP,[_,_,american]),
+    MP<AP,
+    in_list(Friends,[simon,_,israeli]),
+    not(in_list(Friends,[simon,tennis,_])),
+    el_no(Friends,SP,[simon,_,_]),
+    el_no(Friends,TP,[_,tennis,_]),
+    SP<TP,
+    not(in_list(Friends,[_,criket,american])),
+    el_no(Friends,1,[_,criket,_]),
+    
+    in_list(Friends,[Australian,_,australian]),
+    in_list(Friends,[richard,RS,_]),
+    write(Australian),write(" is australian."),nl,
+    write("Richard plays "),write(RS),!.
+
+
 
 
     
