@@ -98,3 +98,10 @@ not_simple_divs_down(Num,CSum,Cur,Sum):-(0 is Num mod Cur,not(is_simple(Cur)) ->
 not_simple_divs_up(Num,Sum):-(is_simple(Num) -> Sum = 1;not_simple_divs_up(Num,Num,Sum)).
 not_simple_divs_up(_,1,1):-!.
 not_simple_divs_up(Num,Cur,Sum):-Next is Cur-1,not_simple_divs_up(Num,Next,NS),(0 is Num mod Cur,not(is_simple(Cur)) -> Sum is NS+Cur;Sum is NS).
+
+%задание 15 странное
+%число 25, сумма простых цифр 7, простые делители 5,5
+%НОД(Х,25) \= 1, НОД(Х,7) = 1, 25 mod X \= 0
+%Х = 10,15,20,30,40,45,50,55.60.65,75,...
+%число 44, сумма простых цифр 0
+%поиск НОД(Х,0) алгоритмом Евклида будет бесконечным :с
