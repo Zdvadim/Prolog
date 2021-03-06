@@ -266,6 +266,41 @@ pr7:-Friends=[_,_,_],
     write(Australian),write(" is australian."),nl,
     write("Richard plays "),write(RS),!.
 
+pr8:-Teachers=[[morozov,_],[morozov,_],[vasilyev,_],[vasilyev,_],[tokarev,_],[tokarev,_]],
+    in_list(Teachers,[_,history]),
+    in_list(Teachers,[_,math]),
+    in_list(Teachers,[_,biology]),
+    in_list(Teachers,[_,geography]),
+    in_list(Teachers,[_,english]),
+    in_list(Teachers,[_,french]),
+    
+    in_list(Teachers,[G,geography]),
+    in_list(Teachers,[F,french]),
+    \+G=F,
+    in_list(Teachers,[B,biology]),
+    in_list(Teachers,[M,math]),
+    \+B=M,
+    not(in_list(Teachers,[morozov,biology])),
+    not(in_list(Teachers,[tokarev,biology])),
+    not(in_list(Teachers,[tokarev,french])),
+    not(B=F),
+    not(in_list(Teachers,[morozov,math])),
+    not(in_list(Teachers,[morozov,english])),
+    in_list(Teachers,[E,english]),
+    \+M=E,
+
+    in_list(Teachers,[morozov,M1]),
+    in_list(Teachers,[morozov,M2]),
+    in_list(Teachers,[vasilyev,V1]),
+    in_list(Teachers,[vasilyev,V2]),
+    in_list(Teachers,[tokarev,T1]),
+    in_list(Teachers,[tokarev,T2]),
+    \+M1=M2,
+    \+V1=V2,
+    \+T1=T2,
+    write("Morozov teaches "),write(M1),write(" and "),write(M2),nl,
+    write("Vasilyev teaches "),write(V1),write(" and "),write(V2),nl,
+    write("Tokarev teaches "),write(T1),write(" and "),write(T2),!.
 
 
 
