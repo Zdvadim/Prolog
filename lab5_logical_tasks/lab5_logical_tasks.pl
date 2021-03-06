@@ -136,7 +136,7 @@ pr2:-Friends=[[belokurov,_],[chernov,_],[rizhov,_]],
     in_list(Friends,[rizhov,RH]),
     write("Belocurov has "),write(BH),write(" hair."),nl,
     write("Chernov has "),write(CH),write(" hair."),nl,
-    write("Rizhov has "),write(RH),write(" hair."),nl,!.
+    write("Rizhov has "),write(RH),write(" hair."),!.
 
 pr3:-Look=[[ann,_,_],[valia,_,_],[natasha,_,_]],
     in_list(Look,[_,white,_]),
@@ -158,5 +158,27 @@ pr3:-Look=[[ann,_,_],[valia,_,_],[natasha,_,_]],
     in_list(Look,[natasha,ND,NS]),
     write("Ann has "),write(AD),write(" dress and "),write(AS),write(" shoes."),nl,
     write("Valia has "),write(VD),write(" dress and "),write(VS),write(" shoes."),nl,
-    write("Natasha has "),write(ND),write(" dress and "),write(NS),write(" shoes."),nl,!.
+    write("Natasha has "),write(ND),write(" dress and "),write(NS),write(" shoes."),!.
     
+pr4:-Friends=[_,_,_],
+    in_list(Friends,[borisov,_]),
+    in_list(Friends,[ivanov,_]),
+    in_list(Friends,[semenov,_]),
+    in_list(Friends,[_,locksmith]),
+    in_list(Friends,[_,turner]),
+    in_list(Friends,[_,welder]),
+
+    el_no(Friends,1,[_,locksmith]),
+    not(in_list(Friends,[borisov,locksmith])),
+    not(in_list(Friends,[semenov,turner])),    
+    el_no(Friends,AS,[semenov,_]),
+    el_no(Friends,AT,[_,turner]),
+    AS>AT,
+    
+    in_list(Friends,[borisov,BJ]),
+    in_list(Friends,[ivanov,IJ]),
+    in_list(Friends,[semenov,SJ]),
+    write("Borisov is "),write(BJ),nl,
+    write("Ivanov is "),write(IJ),nl,
+    write("Semenov is "),write(SJ),!.
+
