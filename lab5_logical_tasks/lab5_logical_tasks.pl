@@ -122,9 +122,6 @@ pr_ein1:-Event=[_,_,_,_],
 %Tasks
 
 pr2:-Friends=[[belokurov,_],[chernov,_],[rizhov,_]],
-    in_list(Friends,[belokurov,_]),
-    in_list(Friends,[chernov,_]),
-    in_list(Friends,[rizhov,_]),
     in_list(Friends,[_,blonde]),
     in_list(Friends,[_,black]),
     in_list(Friends,[_,red]),
@@ -140,3 +137,26 @@ pr2:-Friends=[[belokurov,_],[chernov,_],[rizhov,_]],
     write("Belocurov has "),write(BH),write(" hair."),nl,
     write("Chernov has "),write(CH),write(" hair."),nl,
     write("Rizhov has "),write(RH),write(" hair."),nl,!.
+
+pr3:-Look=[[ann,_,_],[valia,_,_],[natasha,_,_]],
+    in_list(Look,[_,white,_]),
+    in_list(Look,[_,green,_]),
+    in_list(Look,[_,blue,_]),
+    in_list(Look,[_,_,white]),
+    in_list(Look,[_,_,green]),
+    in_list(Look,[_,_,blue]),
+    
+    in_list(Look,[ann,X,X]),
+    not(in_list(Look,[valia,white,_])),
+    not(in_list(Look,[valia,_,white])),
+    not(in_list(Look,[valia,Y,Y])),
+    not(in_list(Look,[valia,Z,Z])),
+    in_list(Look,[natasha,_,green]),
+
+    in_list(Look,[ann,AD,AS]),
+    in_list(Look,[valia,VD,VS]),
+    in_list(Look,[natasha,ND,NS]),
+    write("Ann has "),write(AD),write(" dress and "),write(AS),write(" shoes."),nl,
+    write("Valia has "),write(VD),write(" dress and "),write(VS),write(" shoes."),nl,
+    write("Natasha has "),write(ND),write(" dress and "),write(NS),write(" shoes."),nl,!.
+    
