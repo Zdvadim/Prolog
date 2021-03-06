@@ -57,3 +57,6 @@ grand_sons(Gp):-grand_so(Gs,Gp),write(Gs),nl,fail.
 
 grand_pa_and_son(Gs,Gp):-grand_so(Gs,Gp).
 grand_pa_and_son(Gp,Gs):-grand_so(Gs,Gp).
+
+grand_ma_and_da(Gd,Gm):-parent(P,Gd),parent(Gm,P),woman(Gd),woman(Gm).
+grand_ma_and_da(Gm,Gd):-parent(P,Gd),parent(Gm,P),woman(Gd),woman(Gm).
