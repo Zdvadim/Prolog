@@ -105,3 +105,23 @@ not_simple_divs_up(Num,Cur,Sum):-Next is Cur-1,not_simple_divs_up(Num,Next,NS),(
 %Х = 10,15,20,30,40,45,50,55.60.65,75,...
 %число 44, сумма простых цифр 0
 %поиск НОД(Х,0) алгоритмом Евклида будет бесконечным :с
+
+factD(0,1).
+factD(1,1).
+factD(2,2).
+factD(3,6).
+factD(4,24).
+factD(5,120).
+factD(6,720).
+factD(7,5040).
+factD(8,40320).
+factD(9,362880).
+
+is_factorion(N):-is_factorion(N,N,0).
+is_factorion(N,0,N):-!.
+is_factorion(_,0,_):-!,fail.
+is_factorion(N,CurN,Sum):-CD is CurN mod 10,factD(CD,ToAdd),NSum is Sum+ToAdd,NCurN is CurN div 10,is_factorion(N,NCurN,NSum).
+
+all_factorions:-all_factorions(2540160,3).
+all_factorions(Stop,Stop):-write("All factorions founded!"),!.
+all_factorions(Stop,Cur):-Next is Cur+1,(is_factorion(Cur) -> write(Cur),nl,all_factorions(Stop,Next);all_factorions(Stop,Next)).
