@@ -63,3 +63,7 @@ grand_ma_and_da(Gm,Gd):-parent(P,Gd),parent(Gm,P),woman(Gd),woman(Gm).
 
 uncle(U,N):-parent(P,N),b_s(U,P),man(U).
 uncles(N):-uncle(U,N),write(U),nl,fail.
+
+niece(N,UA):-parent(P,N),b_s(P,UA),woman(N).
+niece(UA):-niece(N,UA),write(N),nl,fail.
+
